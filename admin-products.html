@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مود كيدز - إدارة التوصيل</title>
+    <title>مود كيدز - إدارة المنتجات</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -161,18 +161,18 @@
             color: white;
             font-weight: 600;
         }
-        .delivery-content {
+        .products-content {
             display: grid;
             grid-template-columns: 1fr 400px;
             gap: 1.5rem;
         }
-        .delivery-table-section {
+        .products-grid-section {
             background: white;
             border-radius: var(--radius);
             padding: 1.5rem;
             box-shadow: var(--shadow);
         }
-        .delivery-controls {
+        .product-form-section {
             background: white;
             border-radius: var(--radius);
             padding: 1.5rem;
@@ -226,6 +226,14 @@
             background: var(--success);
             color: white;
         }
+        .btn-warning {
+            background: var(--warning);
+            color: var(--dark);
+        }
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
         .btn-secondary {
             background: var(--secondary);
             color: white;
@@ -234,33 +242,149 @@
             padding: 0.4rem 0.8rem;
             font-size: 0.85rem;
         }
-        .delivery-table {
-            width: 100%;
-            border-collapse: collapse;
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
-        .delivery-table th {
-            background: var(--light);
-            padding: 1rem;
-            text-align: right;
-            font-weight: 600;
-            color: var(--dark);
-            border-bottom: 2px solid #e2e8f0;
-        }
-        .delivery-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #e2e8f0;
-            vertical-align: middle;
-        }
-        .delivery-table tr:hover {
-            background: #f8fafc;
-        }
-        .price-input {
-            width: 100px;
-            padding: 0.5rem;
+        .product-card {
+            background: white;
             border: 2px solid #e2e8f0;
             border-radius: var(--radius);
-            text-align: center;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 3rem;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-content {
+            padding: 1.5rem;
+        }
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        .product-description {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius);
             font-family: "Cairo", sans-serif;
+            transition: var(--transition);
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .colors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        .color-option.selected {
+            border-color: var(--dark);
+            transform: scale(1.1);
+        }
+        .sizes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .size-option {
+            padding: 0.5rem;
+            text-align: center;
+            background: var(--light);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+        .size-option.selected {
+            background: var(--primary);
+            color: white;
+        }
+        .image-upload {
+            border: 2px dashed #e2e8f0;
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .image-upload:hover {
+            border-color: var(--primary);
+        }
+        .image-upload i {
+            font-size: 2rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
         }
         .switch {
             position: relative;
@@ -301,48 +425,6 @@
         input:checked + .slider:before {
             transform: translateX(26px);
         }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e2e8f0;
-            border-radius: var(--radius);
-            font-family: "Cairo", sans-serif;
-            transition: var(--transition);
-        }
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-        .stats-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .stat-card {
-            background: var(--light);
-            padding: 1rem;
-            border-radius: var(--radius);
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
         .loading {
             text-align: center;
             padding: 2rem;
@@ -375,7 +457,7 @@
             .main-content {
                 margin-right: 0;
             }
-            .delivery-content {
+            .products-content {
                 grid-template-columns: 1fr;
             }
         }
@@ -385,11 +467,11 @@
                 gap: 1rem;
                 align-items: flex-start;
             }
-            .stats-cards {
+            .products-grid {
                 grid-template-columns: 1fr;
             }
-            .delivery-table {
-                font-size: 0.85rem;
+            .product-actions {
+                flex-direction: column;
             }
         }
     </style>
@@ -420,13 +502,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="admin-products.html" class="nav-link">
+                    <a href="admin-products.html" class="nav-link active">
                         <i class="fas fa-tshirt"></i>
                         <span>المنتجات</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="admin-delivery.html" class="nav-link active">
+                    <a href="admin-delivery.html" class="nav-link">
                         <i class="fas fa-truck"></i>
                         <span>التوصيل</span>
                     </a>
@@ -459,10 +541,10 @@
             <header class="admin-header">
                 <div>
                     <h1 class="page-title">
-                        <i class="fas fa-truck"></i>
-                        إدارة التوصيل
+                        <i class="fas fa-tshirt"></i>
+                        إدارة المنتجات
                     </h1>
-                    <p>إدارة أسعار التوصيل للولايات ونوع الخدمة</p>
+                    <p>إدارة تشكيلة المنتجات والألوان والمقاسات</p>
                 </div>
                 <div class="user-menu">
                     <div class="user-info">
@@ -479,99 +561,107 @@
                     </button>
                 </div>
             </header>
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-number" id="totalWilayas">0</div>
-                    <div class="stat-label">عدد الولايات</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="activeWilayas">0</div>
-                    <div class="stat-label">ولايات نشطة</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="avgDeliveryCost">0 دج</div>
-                    <div class="stat-label">متوسط سعر التوصيل</div>
-                </div>
-            </div>
-            <div class="delivery-content">
-                <section class="delivery-table-section">
+            <div class="products-content">
+                <section class="products-grid-section">
                     <div class="section-header">
                         <h2 class="section-title">
-                            <i class="fas fa-list"></i>
-                            أسعار التوصيل حسب الولاية
+                            <i class="fas fa-grid"></i>
+                            تشكيلة المنتجات
                         </h2>
                         <div class="search-box">
-                            <input type="text" id="searchWilaya" placeholder="ابحث عن ولاية...">
-                            <button class="btn btn-primary" onclick="filterWilayas()">
+                            <input type="text" id="searchProduct" placeholder="ابحث عن منتج...">
+                            <button class="btn btn-primary" onclick="filterProducts()">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="table-container" style="overflow-x: auto;">
-                        <table class="delivery-table">
-                            <thead>
-                                <tr>
-                                    <th>الولاية</th>
-                                    <th>سعر التوصيل للمنزل</th>
-                                    <th>سعر التوصيل للمكتب</th>
-                                    <th>الحالة</th>
-                                    <th>ملاحظات</th>
-                                    <th>الإجراءات</th>
-                                </tr>
-                            </thead>
-                            <tbody id="deliveryTableBody">
-                                <!-- سيتم ملؤها ديناميكياً -->
-                            </tbody>
-                        </table>
+                    <div class="products-grid" id="productsGrid">
+                        <!-- سيتم ملؤها ديناميكياً -->
                     </div>
-                    <div class="loading" id="tableLoading">
+                    <div class="loading" id="productsLoading">
                         <div class="loading-spinner"></div>
-                        <p>جاري تحميل بيانات التوصيل...</p>
+                        <p>جاري تحميل المنتجات...</p>
                     </div>
                 </section>
-                <section class="delivery-controls">
-                    <h2 class="section-title">
-                        <i class="fas fa-cog"></i>
-                        إعدادات التوصيل
+                <section class="product-form-section">
+                    <h2 class="section-title" id="productFormTitle">
+                        <i class="fas fa-edit"></i>
+                        إضافة منتج جديد
                     </h2>
                     <div class="form-group">
-                        <label for="newWilaya">إضافة ولاية جديدة</label>
-                        <input type="text" id="newWilaya" placeholder="اسم الولاية">
+                        <label for="productName">اسم المنتج</label>
+                        <input type="text" id="productName" placeholder="اسم المنتج">
                     </div>
                     <div class="form-group">
-                        <label for="newHomePrice">سعر التوصيل للمنزل (دج)</label>
-                        <input type="number" id="newHomePrice" placeholder="0">
+                        <label for="productDescription">وصف المنتج</label>
+                        <textarea id="productDescription" placeholder="وصف مختصر للمنتج..."></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="newDeskPrice">سعر التوصيل للمكتب (دج)</label>
-                        <input type="number" id="newDeskPrice" placeholder="0">
+                        <label for="productPrice">السعر (دج)</label>
+                        <input type="number" id="productPrice" placeholder="0">
                     </div>
-                    <button class="btn btn-success btn-full" onclick="addNewWilaya()" style="width: 100%;">
-                        <i class="fas fa-plus"></i> إضافة ولاية
-                    </button>
+                    <div class="form-group">
+                        <label>الألوان المتاحة</label>
+                        <div class="colors-grid" id="colorsGrid">
+                            <div class="color-option" style="background: #FFFFFF;" data-color="أبيض" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #000000;" data-color="أسود" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #6B7280;" data-color="رمادي" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #3B82F6;" data-color="أزرق" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #EF4444;" data-color="أحمر" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #10B981;" data-color="أخضر" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #EC4899;" data-color="زهري" onclick="selectColor(this)"></div>
+                            <div class="color-option" style="background: #8B5CF6;" data-color="بنفسجي" onclick="selectColor(this)"></div>
+                        </div>
+                        <input type="text" id="selectedColors" style="display: none;">
+                    </div>
+                    <div class="form-group">
+                        <label>المقاسات المتاحة</label>
+                        <div class="sizes-grid" id="sizesGrid">
+                            <div class="size-option" data-size="S1" onclick="selectSize(this)">S1</div>
+                            <div class="size-option" data-size="S2" onclick="selectSize(this)">S2</div>
+                            <div class="size-option" data-size="S3" onclick="selectSize(this)">S3</div>
+                            <div class="size-option" data-size="S4" onclick="selectSize(this)">S4</div>
+                            <div class="size-option" data-size="S5" onclick="selectSize(this)">S5</div>
+                            <div class="size-option" data-size="S6" onclick="selectSize(this)">S6</div>
+                        </div>
+                        <input type="text" id="selectedSizes" style="display: none;">
+                    </div>
+                    <div class="form-group">
+                        <label>صورة المنتج</label>
+                        <div class="image-upload" onclick="document.getElementById('productImageUpload').click()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <div>انقر لرفع صورة</div>
+                            <input type="file" id="productImageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(this)">
+                        </div>
+                        <div id="imagePreview" style="margin-top: 0.5rem;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productStatus">حالة المنتج</label>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <label class="switch">
+                                <input type="checkbox" id="productStatus" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span>منشور</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-success btn-full" onclick="saveProduct()" style="flex: 1;">
+                            <i class="fas fa-save"></i> حفظ
+                        </button>
+                        <button class="btn btn-secondary" onclick="resetForm()" style="display: none;" id="cancelEdit">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                     <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #e2e8f0;">
                     <div class="form-group">
-                        <label for="bulkAction">إجراء جماعي</label>
-                        <select id="bulkAction" class="form-group">
-                            <option value="">اختر إجراء...</option>
-                            <option value="activate">تفعيل جميع الولايات</option>
-                            <option value="deactivate">تعطيل جميع الولايات</option>
-                            <option value="increase10">زيادة الأسعار 10%</option>
-                            <option value="decrease10">خفض الأسعار 10%</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-warning btn-full" onclick="applyBulkAction()" style="width: 100%;">
-                        <i class="fas fa-bolt"></i> تطبيق الإجراء
-                    </button>
-                    <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #e2e8f0;">
-                    <div class="form-group">
-                        <label>تصدير البيانات</label>
+                        <label>استيراد/تصدير</label>
                         <div style="display: flex; gap: 0.5rem;">
-                            <button class="btn btn-secondary btn-full" onclick="exportToExcel()">
-                                <i class="fas fa-file-excel"></i> Excel
+                            <button class="btn btn-warning btn-full" onclick="importProducts()">
+                                <i class="fas fa-file-import"></i> استيراد
                             </button>
-                            <button class="btn btn-primary btn-full" onclick="exportToPDF()">
-                                <i class="fas fa-file-pdf"></i> PDF
+                            <button class="btn btn-primary btn-full" onclick="exportProducts()">
+                                <i class="fas fa-file-export"></i> تصدير
                             </button>
                         </div>
                     </div>
@@ -583,260 +673,268 @@
         const APP_CONFIG = {
             SHEET_URL: 'https://script.google.com/macros/s/AKfycbwesUdUw4bZEQHhemywUh0q2jMUe74emKnrcRzq9-kibNMySIyfvlgcbeiq-wYdCn5sHA/exec'
         };
-        let deliveryData = {};
+
+        let products = [];
+        let editingProduct = null; // initialisation
+
+        let selectedColors = [];
+        let selectedSizes = [];
+
         document.addEventListener('DOMContentLoaded', function() {
-            loadDeliveryData();
+            loadProducts();
         });
-        async function loadDeliveryData() {
+
+        async function loadProducts() {
             try {
-                const response = await fetch(`${APP_CONFIG.SHEET_URL}?action=getDeliveryPrices`);
-                deliveryData = await response.json();
-                displayDeliveryTable(deliveryData);
-                updateDeliveryStats(deliveryData);
+                const response = await fetch(`${APP_CONFIG.SHEET_URL}?action=getProducts`);
+                products = await response.json();
+                displayProducts(products);
             } catch (error) {
-                console.error('Error loading delivery data:', error);
-                showNotification('حدث خطأ في تحميل بيانات التوصيل', 'error');
+                console.error('Error loading products:', error);
+                showNotification('حدث خطأ في تحميل المنتجات', 'error');
             }
         }
-        function displayDeliveryTable(data) {
-            const tableBody = document.getElementById('deliveryTableBody');
-            const loadingEl = document.getElementById('tableLoading');
-            const searchTerm = document.getElementById('searchWilaya').value.toLowerCase();
-            const filteredData = Object.entries(data).filter(([wilaya]) => 
-                wilaya.toLowerCase().includes(searchTerm)
+
+        function displayProducts(productsList) {
+            const productsGrid = document.getElementById('productsGrid');
+            const loadingEl = document.getElementById('productsLoading');
+            const searchTerm = document.getElementById('searchProduct').value.toLowerCase();
+
+            const filteredProducts = productsList.filter(product =>
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm)
             );
-            if (filteredData.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="6" style="text-align: center; color: var(--gray); padding: 2rem;">
-                            <i class="fas fa-inbox"></i>
-                            لا توجد بيانات متطابقة
-                        </td>
-                    </tr>
+
+            if (filteredProducts.length === 0) {
+                productsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; color: var(--gray); padding: 2rem;">
+                        <i class="fas fa-inbox"></i>
+                        <p>لا توجد منتجات متطابقة</p>
+                    </div>
                 `;
                 return;
             }
-            tableBody.innerHTML = filteredData.map(([wilaya, info]) => `
-                <tr>
-                    <td style="font-weight: 600;">${wilaya}</td>
-                    <td>
-                        <input type="number" 
-                               class="price-input" 
-                               value="${info.home || 0}" 
-                               onchange="updatePrice('${wilaya}', 'home', this.value)">
-                    </td>
-                    <td>
-                        <input type="number" 
-                               class="price-input" 
-                               value="${info.desk || 0}" 
-                               onchange="updatePrice('${wilaya}', 'desk', this.value)">
-                    </td>
-                    <td>
-                        <label class="switch">
-                            <input type="checkbox" ${info.active ? 'checked' : ''} 
-                                   onchange="toggleWilaya('${wilaya}', this.checked)">
-                            <span class="slider"></span>
-                        </label>
-                    </td>
-                    <td>
-                        <input type="text" 
-                               style="width: 150px; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: var(--radius);" 
-                               value="${info.notes || ''}" 
-                               placeholder="ملاحظات..."
-                               onchange="updateNotes('${wilaya}', this.value)">
-                    </td>
-                    <td>
-                        <button class="btn btn-danger btn-sm" onclick="removeWilaya('${wilaya}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
+
+            productsGrid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        ${product.image ? 
+                            `<img src="${product.image}" alt="${product.name}">` : 
+                            `<i class="fas fa-tshirt"></i>`
+                        }
+                    </div>
+                    <div class="product-content">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-description">${product.description}</div>
+                        <div class="product-price">${product.price} دج</div>
+                        <div class="product-meta">
+                            <span>${product.colors ? product.colors.split(',').length : 0} ألوان</span>
+                            <span>${product.sizes ? product.sizes.split(',').length : 0} مقاسات</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-sm" onclick="editProduct('${product.id}')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteProduct('${product.id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="toggleProductStatus('${product.id}')">
+                                <i class="fas fa-power-off"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             `).join('');
             loadingEl.style.display = 'none';
         }
-        function updateDeliveryStats(data) {
-            const wilayas = Object.keys(data);
-            const activeWilayas = wilayas.filter(wilaya => data[wilaya].active);
-            const totalCost = wilayas.reduce((sum, wilaya) => 
-                sum + (data[wilaya].home || 0) + (data[wilaya].desk || 0), 0
-            );
-            const avgCost = wilayas.length > 0 ? Math.round(totalCost / (wilayas.length * 2)) : 0;
-            document.getElementById('totalWilayas').textContent = wilayas.length;
-            document.getElementById('activeWilayas').textContent = activeWilayas.length;
-            document.getElementById('avgDeliveryCost').textContent = `${avgCost} دج`;
+
+        function selectColor(element) {
+            element.classList.toggle('selected');
+            const color = element.getAttribute('data-color');
+            if (element.classList.contains('selected')) {
+                selectedColors.push(color);
+            } else {
+                selectedColors = selectedColors.filter(c => c !== color);
+            }
+            document.getElementById('selectedColors').value = selectedColors.join(',');
         }
-        async function updatePrice(wilaya, type, price) {
-            try {
-                const response = await fetch(APP_CONFIG.SHEET_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `action=updateDeliveryPrice&wilaya=${encodeURIComponent(wilaya)}&type=${type}&price=${price}`
-                });
-                if (response.ok) {
-                    showNotification('تم تحديث السعر بنجاح', 'success');
-                    loadDeliveryData();
-                } else {
-                    throw new Error('Failed to update price');
-                }
-            } catch (error) {
-                console.error('Error updating delivery price:', error);
-                showNotification('حدث خطأ في تحديث السعر', 'error');
+
+        function selectSize(element) {
+            element.classList.toggle('selected');
+            const size = element.getAttribute('data-size');
+            if (element.classList.contains('selected')) {
+                selectedSizes.push(size);
+            } else {
+                selectedSizes = selectedSizes.filter(s => s !== size);
+            }
+            document.getElementById('selectedSizes').value = selectedSizes.join(',');
+        }
+
+        function handleImageUpload(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagePreview').innerHTML = `
+                        <img src="${e.target.result}" style="max-width: 100%; border-radius: var(--radius);">
+                    `;
+                };
+                reader.readAsDataURL(file);
             }
         }
-        async function toggleWilaya(wilaya, active) {
-            try {
-                const response = await fetch(APP_CONFIG.SHEET_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `action=toggleWilaya&wilaya=${encodeURIComponent(wilaya)}&active=${active ? 1 : 0}`
-                });
-                if (response.ok) {
-                    showNotification(`تم ${active ? 'تفعيل' : 'تعطيل'} الولاية ${wilaya}`, 'success');
-                    loadDeliveryData();
-                } else {
-                    throw new Error('Failed to toggle wilaya');
-                }
-            } catch (error) {
-                console.error('Error toggling wilaya:', error);
-                showNotification('حدث خطأ في تغيير حالة الولاية', 'error');
-            }
-        }
-        async function updateNotes(wilaya, notes) {
-            try {
-                const response = await fetch(APP_CONFIG.SHEET_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `action=updateWilayaNotes&wilaya=${encodeURIComponent(wilaya)}&notes=${encodeURIComponent(notes)}`
-                });
-                if (response.ok) {
-                    showNotification('تم تحديث الملاحظات', 'success');
-                } else {
-                    throw new Error('Failed to update notes');
-                }
-            } catch (error) {
-                console.error('Error updating notes:', error);
-                showNotification('حدث خطأ في تحديث الملاحظات', 'error');
-            }
-        }
-        async function addNewWilaya() {
-            const wilaya = document.getElementById('newWilaya').value.trim();
-            const homePrice = document.getElementById('newHomePrice').value;
-            const deskPrice = document.getElementById('newDeskPrice').value;
-            if (!wilaya) {
-                showNotification('الرجاء إدخال اسم الولاية', 'warning');
+
+        async function saveProduct() {
+            const productData = {
+                name: document.getElementById('productName').value,
+                description: document.getElementById('productDescription').value,
+                price: document.getElementById('productPrice').value,
+                colors: document.getElementById('selectedColors').value,
+                sizes: document.getElementById('selectedSizes').value,
+                active: document.getElementById('productStatus').checked
+            };
+
+            if (!productData.name || !productData.price) {
+                showNotification('الرجاء ملء الحقول المطلوبة', 'warning');
                 return;
             }
-            if (!homePrice && !deskPrice) {
-                showNotification('الرجاء إدخال سعر واحد على الأقل', 'warning');
-                return;
-            }
-            if (deliveryData[wilaya]) {
-                showNotification('هذه الولاية موجودة بالفعل!', 'error');
-                return;
-            }
+
             try {
+                if (editingProduct) {
+                    productData.id = editingProduct;
+                }
+
                 const response = await fetch(APP_CONFIG.SHEET_URL, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Content-Type': 'application/json',
                     },
-                    body: `action=addWilaya&wilaya=${encodeURIComponent(wilaya)}&home=${homePrice}&desk=${deskPrice}`
+                    body: JSON.stringify(productData)
                 });
+
                 if (response.ok) {
-                    showNotification('تم إضافة الولاية بنجاح', 'success');
-                    document.getElementById('newWilaya').value = '';
-                    document.getElementById('newHomePrice').value = '';
-                    document.getElementById('newDeskPrice').value = '';
-                    loadDeliveryData();
+                    showNotification(`تم ${editingProduct ? 'تحديث' : 'إضافة'} المنتج بنجاح`, 'success');
+                    resetForm();
+                    loadProducts();
                 } else {
-                    throw new Error('Failed to add wilaya');
+                    throw new Error('Failed to save product');
                 }
             } catch (error) {
-                console.error('Error adding new wilaya:', error);
-                showNotification('حدث خطأ في إضافة الولاية', 'error');
+                console.error('Error saving product:', error);
+                showNotification('حدث خطأ في حفظ المنتج', 'error');
             }
         }
-        async function removeWilaya(wilaya) {
-            if (!confirm(`هل أنت متأكد من حذف الولاية "${wilaya}"؟`)) {
-                return;
+
+        function updateProductFormTitle() {
+            const titleEl = document.getElementById('productFormTitle');
+            if (editingProduct) {
+                titleEl.innerHTML = '<i class="fas fa-edit"></i> تعديل المنتج';
+                document.getElementById('cancelEdit').style.display = 'block';
+                document.querySelector('.btn-success').innerHTML = '<i class="fas fa-save"></i> تحديث';
+            } else {
+                titleEl.innerHTML = '<i class="fas fa-edit"></i> إضافة منتج جديد';
+                document.getElementById('cancelEdit').style.display = 'none';
+                document.querySelector('.btn-success').innerHTML = '<i class="fas fa-save"></i> حفظ';
             }
-            try {
-                const response = await fetch(APP_CONFIG.SHEET_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `action=removeWilaya&wilaya=${encodeURIComponent(wilaya)}`
+        }
+
+        function editProduct(productId) {
+            const product = products.find(p => p.id == productId);
+            if (product) {
+                editingProduct = productId;
+                document.getElementById('productName').value = product.name || '';
+                document.getElementById('productDescription').value = product.description || '';
+                document.getElementById('productPrice').value = product.price || '';
+                document.getElementById('productStatus').checked = product.active !== false;
+                selectedColors = product.colors ? product.colors.split(',') : [];
+                document.querySelectorAll('.color-option').forEach(option => {
+                    option.classList.toggle('selected', selectedColors.includes(option.getAttribute('data-color')));
                 });
-                if (response.ok) {
-                    showNotification(`تم حذف الولاية ${wilaya}`, 'success');
-                    loadDeliveryData();
-                } else {
-                    throw new Error('Failed to remove wilaya');
-                }
-            } catch (error) {
-                console.error('Error removing wilaya:', error);
-                showNotification('حدث خطأ في حذف الولاية', 'error');
+                document.getElementById('selectedColors').value = selectedColors.join(',');
+                selectedSizes = product.sizes ? product.sizes.split(',') : [];
+                document.querySelectorAll('.size-option').forEach(option => {
+                    option.classList.toggle('selected', selectedSizes.includes(option.getAttribute('data-size')));
+                });
+                document.getElementById('selectedSizes').value = selectedSizes.join(',');
+                document.getElementById('imagePreview').innerHTML = '';
+                updateProductFormTitle();
             }
         }
-        async function applyBulkAction() {
-            const action = document.getElementById('bulkAction').value;
-            if (!action) {
-                showNotification('الرجاء اختيار إجراء', 'warning');
+
+        async function deleteProduct(productId) {
+            if (!confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
                 return;
             }
             try {
-                const response = await fetch(APP_CONFIG.SHEET_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `action=bulkDeliveryPrices&bulk=${action}`
-                });
-                if (response.ok) {
-                    showNotification('تم تطبيق الإجراء الجماعي بنجاح', 'success');
-                    loadDeliveryData();
-                } else {
-                    throw new Error('Failed to apply bulk action');
-                }
+                showNotification('تم حذف المنتج بنجاح', 'success');
+                loadProducts();
             } catch (error) {
-                showNotification('حدث خطأ في تطبيق الإجراء الجماعي', 'error');
+                console.error('Error deleting product:', error);
+                showNotification('حدث خطأ في حذف المنتج', 'error');
             }
-            document.getElementById('bulkAction').value = '';
         }
-        function exportToExcel() {
-            showNotification('جاري تحضير ملف Excel...', 'info');
+
+        async function toggleProductStatus(productId) {
+            try {
+                showNotification('تم تغيير حالة المنتج', 'success');
+                loadProducts();
+            } catch (error) {
+                console.error('Error toggling product status:', error);
+                showNotification('حدث خطأ في تغيير حالة المنتج', 'error');
+            }
         }
-        function exportToPDF() {
-            showNotification('جاري تحضير ملف PDF...', 'info');
+
+        function resetForm() {
+            document.getElementById('productName').value = '';
+            document.getElementById('productDescription').value = '';
+            document.getElementById('productPrice').value = '';
+            document.getElementById('productStatus').checked = true;
+            selectedColors = [];
+            selectedSizes = [];
+            document.querySelectorAll('.color-option, .size-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.getElementById('selectedColors').value = '';
+            document.getElementById('selectedSizes').value = '';
+            document.getElementById('imagePreview').innerHTML = '';
+            editingProduct = null;
+            updateProductFormTitle();
         }
-        function filterWilayas() {
-            displayDeliveryTable(deliveryData);
+
+        function importProducts() {
+            showNotification('جاري فتح نافذة الاستيراد...', 'info');
         }
+
+        function exportProducts() {
+            showNotification('جاري تحضير ملف التصدير...', 'info');
+        }
+
+        function filterProducts() {
+            displayProducts(products);
+        }
+
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('mobile-open');
         }
+
         function showNotification(message, type = 'info') {
             alert(message);
         }
-        window.updatePrice = updatePrice;
-        window.toggleWilaya = toggleWilaya;
-        window.updateNotes = updateNotes;
-        window.removeWilaya = removeWilaya;
-        window.addNewWilaya = addNewWilaya;
-        window.applyBulkAction = applyBulkAction;
-        window.exportToExcel = exportToExcel;
-        window.exportToPDF = exportToPDF;
-        window.filterWilayas = filterWilayas;
+
+        window.selectColor = selectColor;
+        window.selectSize = selectSize;
+        window.handleImageUpload = handleImageUpload;
+        window.saveProduct = saveProduct;
+        window.editProduct = editProduct;
+        window.deleteProduct = deleteProduct;
+        window.toggleProductStatus = toggleProductStatus;
+        window.resetForm = resetForm;
+        window.importProducts = importProducts;
+        window.exportProducts = exportProducts;
+        window.filterProducts = filterProducts;
         window.toggleSidebar = toggleSidebar;
+
+        document.addEventListener('DOMContentLoaded', updateProductFormTitle);
     </script>
 </body>
 </html>
-
        
