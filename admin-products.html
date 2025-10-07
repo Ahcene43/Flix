@@ -3,133 +3,575 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مود كيدز - إدارة المنتجات</title>
+    <title>مود كيدز - إدارة التوصيل</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ... (tout le CSS inchangé, tu peux copier comme l’original) ... */
-        /* ... pour gagner de la place ici, car il est déjà bien structuré ... */
+        :root {
+            --primary: #FF6B8B;
+            --primary-dark: #E05575;
+            --secondary: #4ECDC4;
+            --secondary-dark: #3BB4AC;
+            --accent: #FFD166;
+            --success: #06D6A0;
+            --warning: #FFD166;
+            --danger: #EF476F;
+            --info: #118AB2;
+            --light: #F8F9FA;
+            --dark: #2D3047;
+            --gray: #6C757D;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Cairo", sans-serif;
+            direction: rtl;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--dark);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .admin-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+        .sidebar {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1c2f 100%);
+            color: white;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            position: fixed;
+            width: 280px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+        .logo-icon {
+            font-size: 2.5rem;
+            background: var(--primary);
+            padding: 0.8rem;
+            border-radius: 50%;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-main {
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .logo-tagline {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+        .nav-menu {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        .nav-link.active {
+            background: var(--primary);
+        }
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+        }
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+        .main-content {
+            padding: 1.5rem;
+            margin-right: 280px;
+        }
+        .admin-header {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        .delivery-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 1.5rem;
+        }
+        .delivery-table-section {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        .delivery-controls {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius);
+            font-family: "Cairo", sans-serif;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: "Cairo", sans-serif;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+        }
+        .delivery-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .delivery-table th {
+            background: var(--light);
+            padding: 1rem;
+            text-align: right;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .delivery-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+        .delivery-table tr:hover {
+            background: #f8fafc;
+        }
+        .price-input {
+            width: 100px;
+            padding: 0.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius);
+            text-align: center;
+            font-family: "Cairo", sans-serif;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--success);
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius);
+            font-family: "Cairo", sans-serif;
+            transition: var(--transition);
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-card {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+        }
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media (max-width: 1024px) {
+            .admin-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                transform: translateX(-100%);
+                transition: var(--transition);
+                z-index: 1000;
+            }
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-right: 0;
+            }
+            .delivery-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+            .delivery-table {
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="admin-container">
-        <!-- الشريط الجانبي -->
         <aside class="sidebar" id="sidebar">
-            <!-- ... sidebar inchangée ... -->
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="logo-text">
+                    <div class="logo-main">مود كيدز</div>
+                    <div class="logo-tagline">لوحة التحكم</div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="admin.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>لوحة التحكم</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-orders.html" class="nav-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>إدارة الطلبات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-products.html" class="nav-link">
+                        <i class="fas fa-tshirt"></i>
+                        <span>المنتجات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-delivery.html" class="nav-link active">
+                        <i class="fas fa-truck"></i>
+                        <span>التوصيل</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-customers.html" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>العملاء</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-reports.html" class="nav-link">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>التقارير</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span>الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>مود كيدز &copy; 2024</p>
+                <p>جميع الحقوق محفوظة</p>
+            </div>
         </aside>
-
-        <!-- المحتوى الرئيسي -->
         <main class="main-content">
-            <!-- الهيدر -->
             <header class="admin-header">
-                <!-- ... header inchangé ... -->
-            </header>
-
-            <div class="products-content">
-                <!-- شبكة المنتجات -->
-                <section class="products-grid-section">
-                    <!-- ... section header inchangée ... -->
-                    <div class="products-grid" id="productsGrid">
-                        <!-- سيتم ملؤها ديناميكياً -->
+                <div>
+                    <h1 class="page-title">
+                        <i class="fas fa-truck"></i>
+                        إدارة التوصيل
+                    </h1>
+                    <p>إدارة أسعار التوصيل للولايات ونوع الخدمة</p>
+                </div>
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">مدير النظام</div>
+                            <div style="font-size: 0.85rem; color: var(--gray);">Admin</div>
+                        </div>
                     </div>
-                    <div class="loading" id="productsLoading">
+                    <button class="btn btn-secondary" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </header>
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalWilayas">0</div>
+                    <div class="stat-label">عدد الولايات</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeWilayas">0</div>
+                    <div class="stat-label">ولايات نشطة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgDeliveryCost">0 دج</div>
+                    <div class="stat-label">متوسط سعر التوصيل</div>
+                </div>
+            </div>
+            <div class="delivery-content">
+                <section class="delivery-table-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-list"></i>
+                            أسعار التوصيل حسب الولاية
+                        </h2>
+                        <div class="search-box">
+                            <input type="text" id="searchWilaya" placeholder="ابحث عن ولاية...">
+                            <button class="btn btn-primary" onclick="filterWilayas()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table class="delivery-table">
+                            <thead>
+                                <tr>
+                                    <th>الولاية</th>
+                                    <th>سعر التوصيل للمنزل</th>
+                                    <th>سعر التوصيل للمكتب</th>
+                                    <th>الحالة</th>
+                                    <th>ملاحظات</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="deliveryTableBody">
+                                <!-- سيتم ملؤها ديناميكياً -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="loading" id="tableLoading">
                         <div class="loading-spinner"></div>
-                        <p>جاري تحميل المنتجات...</p>
+                        <p>جاري تحميل بيانات التوصيل...</p>
                     </div>
                 </section>
-
-                <!-- نموذج إدارة المنتج -->
-                <section class="product-form-section">
-                    <h2 class="section-title" id="productFormTitle">
-                        <i class="fas fa-edit"></i>
-                        إضافة منتج جديد
+                <section class="delivery-controls">
+                    <h2 class="section-title">
+                        <i class="fas fa-cog"></i>
+                        إعدادات التوصيل
                     </h2>
-
                     <div class="form-group">
-                        <label for="productName">اسم المنتج</label>
-                        <input type="text" id="productName" placeholder="اسم المنتج">
+                        <label for="newWilaya">إضافة ولاية جديدة</label>
+                        <input type="text" id="newWilaya" placeholder="اسم الولاية">
                     </div>
-
                     <div class="form-group">
-                        <label for="productDescription">وصف المنتج</label>
-                        <textarea id="productDescription" placeholder="وصف مختصر للمنتج..."></textarea>
+                        <label for="newHomePrice">سعر التوصيل للمنزل (دج)</label>
+                        <input type="number" id="newHomePrice" placeholder="0">
                     </div>
-
                     <div class="form-group">
-                        <label for="productPrice">السعر (دج)</label>
-                        <input type="number" id="productPrice" placeholder="0">
+                        <label for="newDeskPrice">سعر التوصيل للمكتب (دج)</label>
+                        <input type="number" id="newDeskPrice" placeholder="0">
                     </div>
-
-                    <div class="form-group">
-                        <label>الألوان المتاحة</label>
-                        <div class="colors-grid" id="colorsGrid">
-                            <div class="color-option" style="background: #FFFFFF;" data-color="أبيض" onclick="selectColor(this)"></div>
-                            <div class="color-option" style="background: #000000;" data-color="أسود" onclick="selectColor(this)"></div>
-                            <div class="color-option" style="background: #6B7280;" data-color="رمادي" onclick="selectColor(this)"></div>
-                            <div class="color-option" style="background: #3B82F6;" data-color="أزرق" onclick="selectColor(this)"></div>
-                            <div class="color-option" style="background: #EF4444;" data-color="أحمر" onclick="selectColor(this)"></div>
-                            <div class="color-option" style="background: #10B981;" data-color="أخضر" onclick="selectColor(this)"></div>
-                            <div class="color-option" style="background: #EC4899;" data-color="زهري" onclick="selectColor(this)"></div>
-                            <div class="color-option" style="background: #8B5CF6;" data-color="بنفسجي" onclick="selectColor(this)"></div>
-                        </div>
-                        <input type="text" id="selectedColors" style="display: none;">
-                    </div>
-
-                    <div class="form-group">
-                        <label>المقاسات المتاحة</label>
-                        <div class="sizes-grid" id="sizesGrid">
-                            <div class="size-option" data-size="S1" onclick="selectSize(this)">S1</div>
-                            <div class="size-option" data-size="S2" onclick="selectSize(this)">S2</div>
-                            <div class="size-option" data-size="S3" onclick="selectSize(this)">S3</div>
-                            <div class="size-option" data-size="S4" onclick="selectSize(this)">S4</div>
-                            <div class="size-option" data-size="S5" onclick="selectSize(this)">S5</div>
-                            <div class="size-option" data-size="S6" onclick="selectSize(this)">S6</div>
-                        </div>
-                        <input type="text" id="selectedSizes" style="display: none;">
-                    </div>
-
-                    <div class="form-group">
-                        <label>صورة المنتج</label>
-                        <div class="image-upload" onclick="document.getElementById('productImageUpload').click()">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <div>انقر لرفع صورة</div>
-                            <input type="file" id="productImageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(this)">
-                        </div>
-                        <div id="imagePreview" style="margin-top: 0.5rem;"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="productStatus">حالة المنتج</label>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <label class="switch">
-                                <input type="checkbox" id="productStatus" checked>
-                                <span class="slider"></span>
-                            </label>
-                            <span>منشور</span>
-                        </div>
-                    </div>
-
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button class="btn btn-success btn-full" onclick="saveProduct()" style="flex: 1;">
-                            <i class="fas fa-save"></i> حفظ
-                        </button>
-                        <button class="btn btn-secondary" onclick="resetForm()" style="display: none;" id="cancelEdit">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-
+                    <button class="btn btn-success btn-full" onclick="addNewWilaya()" style="width: 100%;">
+                        <i class="fas fa-plus"></i> إضافة ولاية
+                    </button>
                     <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #e2e8f0;">
-
                     <div class="form-group">
-                        <label>استيراد/تصدير</label>
+                        <label for="bulkAction">إجراء جماعي</label>
+                        <select id="bulkAction" class="form-group">
+                            <option value="">اختر إجراء...</option>
+                            <option value="activate">تفعيل جميع الولايات</option>
+                            <option value="deactivate">تعطيل جميع الولايات</option>
+                            <option value="increase10">زيادة الأسعار 10%</option>
+                            <option value="decrease10">خفض الأسعار 10%</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-warning btn-full" onclick="applyBulkAction()" style="width: 100%;">
+                        <i class="fas fa-bolt"></i> تطبيق الإجراء
+                    </button>
+                    <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #e2e8f0;">
+                    <div class="form-group">
+                        <label>تصدير البيانات</label>
                         <div style="display: flex; gap: 0.5rem;">
-                            <button class="btn btn-warning btn-full" onclick="importProducts()">
-                                <i class="fas fa-file-import"></i> استيراد
+                            <button class="btn btn-secondary btn-full" onclick="exportToExcel()">
+                                <i class="fas fa-file-excel"></i> Excel
                             </button>
-                            <button class="btn btn-primary btn-full" onclick="exportProducts()">
-                                <i class="fas fa-file-export"></i> تصدير
+                            <button class="btn btn-primary btn-full" onclick="exportToPDF()">
+                                <i class="fas fa-file-pdf"></i> PDF
                             </button>
                         </div>
                     </div>
@@ -137,58 +579,264 @@
             </div>
         </main>
     </div>
-
     <script>
         const APP_CONFIG = {
             SHEET_URL: 'https://script.google.com/macros/s/AKfycbwesUdUw4bZEQHhemywUh0q2jMUe74emKnrcRzq9-kibNMySIyfvlgcbeiq-wYdCn5sHA/exec'
         };
-
-        let products = [];
-        let editingProduct = null; // initialisation
-
-        let selectedColors = [];
-        let selectedSizes = [];
-
+        let deliveryData = {};
         document.addEventListener('DOMContentLoaded', function() {
-            loadProducts();
+            loadDeliveryData();
         });
-
-        // ... (tout le reste du JS inchangé) ...
-
-        // Modifier le titre dynamiquement selon l’état du formulaire
-        function updateProductFormTitle() {
-            const titleEl = document.getElementById('productFormTitle');
-            if (editingProduct) {
-                titleEl.innerHTML = '<i class="fas fa-edit"></i> تعديل المنتج';
-                document.getElementById('cancelEdit').style.display = 'block';
-                document.querySelector('.btn-success').innerHTML = '<i class="fas fa-save"></i> تحديث';
-            } else {
-                titleEl.innerHTML = '<i class="fas fa-edit"></i> إضافة منتج جديد';
-                document.getElementById('cancelEdit').style.display = 'none';
-                document.querySelector('.btn-success').innerHTML = '<i class="fas fa-save"></i> حفظ';
+        async function loadDeliveryData() {
+            try {
+                const response = await fetch(`${APP_CONFIG.SHEET_URL}?action=getDeliveryPrices`);
+                deliveryData = await response.json();
+                displayDeliveryTable(deliveryData);
+                updateDeliveryStats(deliveryData);
+            } catch (error) {
+                console.error('Error loading delivery data:', error);
+                showNotification('حدث خطأ في تحميل بيانات التوصيل', 'error');
             }
         }
-
-        // Appeler la fonction à chaque fois qu’on change l’état
-        function editProduct(productId) {
-            const product = products.find(p => p.id == productId);
-            if (product) {
-                editingProduct = productId;
-                // ... (le reste inchangé) ...
-                updateProductFormTitle();
+        function displayDeliveryTable(data) {
+            const tableBody = document.getElementById('deliveryTableBody');
+            const loadingEl = document.getElementById('tableLoading');
+            const searchTerm = document.getElementById('searchWilaya').value.toLowerCase();
+            const filteredData = Object.entries(data).filter(([wilaya]) => 
+                wilaya.toLowerCase().includes(searchTerm)
+            );
+            if (filteredData.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: var(--gray); padding: 2rem;">
+                            <i class="fas fa-inbox"></i>
+                            لا توجد بيانات متطابقة
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            tableBody.innerHTML = filteredData.map(([wilaya, info]) => `
+                <tr>
+                    <td style="font-weight: 600;">${wilaya}</td>
+                    <td>
+                        <input type="number" 
+                               class="price-input" 
+                               value="${info.home || 0}" 
+                               onchange="updatePrice('${wilaya}', 'home', this.value)">
+                    </td>
+                    <td>
+                        <input type="number" 
+                               class="price-input" 
+                               value="${info.desk || 0}" 
+                               onchange="updatePrice('${wilaya}', 'desk', this.value)">
+                    </td>
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox" ${info.active ? 'checked' : ''} 
+                                   onchange="toggleWilaya('${wilaya}', this.checked)">
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" 
+                               style="width: 150px; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: var(--radius);" 
+                               value="${info.notes || ''}" 
+                               placeholder="ملاحظات..."
+                               onchange="updateNotes('${wilaya}', this.value)">
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="removeWilaya('${wilaya}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+            loadingEl.style.display = 'none';
+        }
+        function updateDeliveryStats(data) {
+            const wilayas = Object.keys(data);
+            const activeWilayas = wilayas.filter(wilaya => data[wilaya].active);
+            const totalCost = wilayas.reduce((sum, wilaya) => 
+                sum + (data[wilaya].home || 0) + (data[wilaya].desk || 0), 0
+            );
+            const avgCost = wilayas.length > 0 ? Math.round(totalCost / (wilayas.length * 2)) : 0;
+            document.getElementById('totalWilayas').textContent = wilayas.length;
+            document.getElementById('activeWilayas').textContent = activeWilayas.length;
+            document.getElementById('avgDeliveryCost').textContent = `${avgCost} دج`;
+        }
+        async function updatePrice(wilaya, type, price) {
+            try {
+                const response = await fetch(APP_CONFIG.SHEET_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=updateDeliveryPrice&wilaya=${encodeURIComponent(wilaya)}&type=${type}&price=${price}`
+                });
+                if (response.ok) {
+                    showNotification('تم تحديث السعر بنجاح', 'success');
+                    loadDeliveryData();
+                } else {
+                    throw new Error('Failed to update price');
+                }
+            } catch (error) {
+                console.error('Error updating delivery price:', error);
+                showNotification('حدث خطأ في تحديث السعر', 'error');
             }
         }
-
-        function resetForm() {
-            // ... (le reste inchangé) ...
-            editingProduct = null;
-            updateProductFormTitle();
+        async function toggleWilaya(wilaya, active) {
+            try {
+                const response = await fetch(APP_CONFIG.SHEET_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=toggleWilaya&wilaya=${encodeURIComponent(wilaya)}&active=${active ? 1 : 0}`
+                });
+                if (response.ok) {
+                    showNotification(`تم ${active ? 'تفعيل' : 'تعطيل'} الولاية ${wilaya}`, 'success');
+                    loadDeliveryData();
+                } else {
+                    throw new Error('Failed to toggle wilaya');
+                }
+            } catch (error) {
+                console.error('Error toggling wilaya:', error);
+                showNotification('حدث خطأ في تغيير حالة الولاية', 'error');
+            }
         }
-
-        // Appeler updateProductFormTitle() au chargement initial
-        document.addEventListener('DOMContentLoaded', updateProductFormTitle);
-
-        // ... (tout le reste inchangé) ...
+        async function updateNotes(wilaya, notes) {
+            try {
+                const response = await fetch(APP_CONFIG.SHEET_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=updateWilayaNotes&wilaya=${encodeURIComponent(wilaya)}&notes=${encodeURIComponent(notes)}`
+                });
+                if (response.ok) {
+                    showNotification('تم تحديث الملاحظات', 'success');
+                } else {
+                    throw new Error('Failed to update notes');
+                }
+            } catch (error) {
+                console.error('Error updating notes:', error);
+                showNotification('حدث خطأ في تحديث الملاحظات', 'error');
+            }
+        }
+        async function addNewWilaya() {
+            const wilaya = document.getElementById('newWilaya').value.trim();
+            const homePrice = document.getElementById('newHomePrice').value;
+            const deskPrice = document.getElementById('newDeskPrice').value;
+            if (!wilaya) {
+                showNotification('الرجاء إدخال اسم الولاية', 'warning');
+                return;
+            }
+            if (!homePrice && !deskPrice) {
+                showNotification('الرجاء إدخال سعر واحد على الأقل', 'warning');
+                return;
+            }
+            if (deliveryData[wilaya]) {
+                showNotification('هذه الولاية موجودة بالفعل!', 'error');
+                return;
+            }
+            try {
+                const response = await fetch(APP_CONFIG.SHEET_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=addWilaya&wilaya=${encodeURIComponent(wilaya)}&home=${homePrice}&desk=${deskPrice}`
+                });
+                if (response.ok) {
+                    showNotification('تم إضافة الولاية بنجاح', 'success');
+                    document.getElementById('newWilaya').value = '';
+                    document.getElementById('newHomePrice').value = '';
+                    document.getElementById('newDeskPrice').value = '';
+                    loadDeliveryData();
+                } else {
+                    throw new Error('Failed to add wilaya');
+                }
+            } catch (error) {
+                console.error('Error adding new wilaya:', error);
+                showNotification('حدث خطأ في إضافة الولاية', 'error');
+            }
+        }
+        async function removeWilaya(wilaya) {
+            if (!confirm(`هل أنت متأكد من حذف الولاية "${wilaya}"؟`)) {
+                return;
+            }
+            try {
+                const response = await fetch(APP_CONFIG.SHEET_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=removeWilaya&wilaya=${encodeURIComponent(wilaya)}`
+                });
+                if (response.ok) {
+                    showNotification(`تم حذف الولاية ${wilaya}`, 'success');
+                    loadDeliveryData();
+                } else {
+                    throw new Error('Failed to remove wilaya');
+                }
+            } catch (error) {
+                console.error('Error removing wilaya:', error);
+                showNotification('حدث خطأ في حذف الولاية', 'error');
+            }
+        }
+        async function applyBulkAction() {
+            const action = document.getElementById('bulkAction').value;
+            if (!action) {
+                showNotification('الرجاء اختيار إجراء', 'warning');
+                return;
+            }
+            try {
+                const response = await fetch(APP_CONFIG.SHEET_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=bulkDeliveryPrices&bulk=${action}`
+                });
+                if (response.ok) {
+                    showNotification('تم تطبيق الإجراء الجماعي بنجاح', 'success');
+                    loadDeliveryData();
+                } else {
+                    throw new Error('Failed to apply bulk action');
+                }
+            } catch (error) {
+                showNotification('حدث خطأ في تطبيق الإجراء الجماعي', 'error');
+            }
+            document.getElementById('bulkAction').value = '';
+        }
+        function exportToExcel() {
+            showNotification('جاري تحضير ملف Excel...', 'info');
+        }
+        function exportToPDF() {
+            showNotification('جاري تحضير ملف PDF...', 'info');
+        }
+        function filterWilayas() {
+            displayDeliveryTable(deliveryData);
+        }
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+        }
+        function showNotification(message, type = 'info') {
+            alert(message);
+        }
+        window.updatePrice = updatePrice;
+        window.toggleWilaya = toggleWilaya;
+        window.updateNotes = updateNotes;
+        window.removeWilaya = removeWilaya;
+        window.addNewWilaya = addNewWilaya;
+        window.applyBulkAction = applyBulkAction;
+        window.exportToExcel = exportToExcel;
+        window.exportToPDF = exportToPDF;
+        window.filterWilayas = filterWilayas;
+        window.toggleSidebar = toggleSidebar;
     </script>
 </body>
 </html>
+
+       
