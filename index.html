@@ -1038,6 +1038,638 @@
     }
   </style>
 </head>
+  <!-- ... Toutes les balises HTML précédentes ... -->
+<script>
+    // بيانات التوصيل
+    const deliveryPrices = {
+      "إختر الولاية": { "home": 0, "desk": 0 },
+      "أدرار": { "home": 1100, "desk": 600 },
+      "الشلف": { "home": 700, "desk": 400 },
+      "الأغواط": { "home": 900, "desk": 500 },
+      "أم البواقي": { "home": 650, "desk": 400 },
+      "باتنة": { "home": 700, "desk": 400 },
+      "بجاية": { "home": 700, "desk": 400 },
+      "بسكرة": { "home": 900, "desk": 500 },
+      "بشار": { "home": 1100, "desk": 600 },
+      "البليدة": { "home": 500, "desk": 250 },
+      "البويرة": { "home": 700, "desk": 400 },
+      "تمنراست": { "home": 1300, "desk": 800 },
+      "تبسة": { "home": 700, "desk": 400 },
+      "تلمسان": { "home": 800, "desk": 400 },
+      "تيارت": { "home": 800, "desk": 400 },
+      "تيزي وزو": { "home": 700, "desk": 400 },
+      "الجزائر": { "home": 500, "desk": 250 },
+      "الجلفة": { "home": 900, "desk": 500 },
+      "جيجل": { "home": 700, "desk": 400 },
+      "سطيف": { "home": 700, "desk": 400 },
+      "سعيدة": { "home": 800, "desk": 400 },
+      "سكيكدة": { "home": 600, "desk": 400 },
+      "سيدي بلعباس": { "home": 700, "desk": 400 },
+      "عنابة": { "home": 700, "desk": 400 },
+      "قالمة": { "home": 600, "desk": 400 },
+      "قسنطينة": { "home": 600, "desk": 400 },
+      "المدية": { "home": 700, "desk": 400 },
+      "مستغانم": { "home": 700, "desk": 400 },
+      "المسيلة": { "home": 800, "desk": 400 },
+      "معسكر": { "home": 700, "desk": 400 },
+      "ورقلة": { "home": 900, "desk": 500 },
+      "وهران": { "home": 800, "desk": 400 },
+      "البيض": { "home": 800, "desk": 500 },
+      "إليزي": { "home": 1300, "desk": 600 },
+      "برج بوعريريج": { "home": 700, "desk": 400 },
+      "بومرداس": { "home": 700, "desk": 400 },
+      "الطارف": { "home": 700, "desk": 400 },
+      "تندوف": { "home": 1300, "desk": 600 },
+      "تيسمسيلت": { "home": 800, "desk": 400 },
+      "الوادي": { "home": 900, "desk": 500 },
+      "خنشلة": { "home": 700, "desk": 500 },
+      "سوق أهراس": { "home": 700, "desk": 400 },
+      "تيبازة": { "home": 700, "desk": 400 },
+      "ميلة": { "home": 500, "desk": 350 },
+      "عين الدفلى": { "home": 700, "desk": 400 },
+      "النعامة": { "home": 800, "desk": 500 },
+      "عين تموشنت": { "home": 800, "desk": 400 },
+      "غرداية": { "home": 900, "desk": 500 },
+      "غليزان": { "home": 700, "desk": 400 },
+      "تيميمون": { "home": 1100, "desk": 600 },
+      "أولاد جلال": { "home": 900, "desk": 500 },
+      "إن صالح": { "home": 1300, "desk": 600 },
+      "جانت": { "home": 1100, "desk": 500 }
+    };
+
+    const modalData = {
+      1: { 
+        name: "مودال أنيق للفتيات", 
+        image: "images/modal1.jpg", 
+        price: 3300,
+        description: "تصميم مريح وعصري مع تفاصيل راقية تناسب جميع المناسبات"
+      },
+      2: { 
+        name: "مودال احتفالي فاخر", 
+        image: "images/modal2.jpg", 
+        price: 3300,
+        description: "تصميم عملي وأنيق مع خامات عالية الجودة تدوم طويلا"
+      },
+      3: { 
+        name: "مودال الاحلام بلون احمر", 
+        image: "images/modal3.jpg", 
+        price: 3300,
+        description: "مثالي للأنشطة اليومية مع تصميم يسمح بحرية الحركة"
+      },
+      4: { 
+        name: "مودال الاحلام بلون ازرق", 
+        image: "images/modal4.jpg", 
+        price: 3300,
+        description: "تصميم فاخر مع تفاصيل مميزة للمناسبات الخاصة"
+      },
+      5: { 
+        name: "مودال يومي عملي", 
+        image: "images/modal5.jpg", 
+        price: 3300,
+        description: "تصميم عملي مع خامات سهلة التنظيف والارتداء"
+      }
+    };
+
+    function getSize(age) {
+      if (age >= 6 && age <= 7) return "S1";
+      if (age >= 8 && age <= 9) return "S2";
+      if (age >= 10 && age <= 11) return "S3";
+      if (age >= 12 && age <= 13) return "S4";
+      return "غير متوفر";
+    }
+
+    function saveUserData() {
+      const userData = {
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        daire: document.getElementById('daire').value,
+        address: document.getElementById('address').value,
+        wilaya: document.getElementById('wilaya').value,
+        deliveryType: document.getElementById('deliveryType').value,
+        savedAt: new Date().getTime()
+      };
+      localStorage.setItem('modKidsUserData', JSON.stringify(userData));
+    }
+    function loadUserData() {
+      const savedData = localStorage.getItem('modKidsUserData');
+      if (savedData) {
+        const userData = JSON.parse(savedData);
+        if (userData.name) document.getElementById('name').value = userData.name;
+        if (userData.phone) document.getElementById('phone').value = userData.phone;
+        if (userData.daire) document.getElementById('daire').value = userData.daire;
+        if (userData.address) document.getElementById('address').value = userData.address;
+        if (userData.wilaya) document.getElementById('wilaya').value = userData.wilaya;
+        if (userData.deliveryType) document.getElementById('deliveryType').value = userData.deliveryType;
+        updatePrice();
+      }
+    }
+    function clearUserData() {
+      localStorage.removeItem('modKidsUserData');
+      document.getElementById('name').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('daire').value = '';
+      document.getElementById('address').value = '';
+      document.getElementById('wilaya').value = '';
+      document.getElementById('deliveryType').value = 'home';
+      updatePrice();
+      alert('تم مسح البيانات المحفوظة بنجاح');
+    }
+    function setupAutoSave() {
+      const fieldsToSave = ['name', 'phone', 'daire', 'address', 'wilaya', 'deliveryType'];
+      fieldsToSave.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+          field.addEventListener('input', function() {
+            clearTimeout(window.autoSaveTimeout);
+            window.autoSaveTimeout = setTimeout(saveUserData, 1000);
+          });
+          field.addEventListener('change', function() {
+            saveUserData();
+          });
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      initSlider();
+      initWilayaSelect();
+      initEvents();
+      loadUserData();
+      setupAutoSave();
+      updatePrice();
+      window.addEventListener('scroll', function() {
+        const header = document.getElementById('mainHeader');
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      document.getElementById('successModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeModal();
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && document.getElementById('successModal').classList.contains('show')) {
+          closeModal();
+        }
+      });
+    });
+
+    function initSlider() {
+      const slidesContainer = document.querySelector('.slides-container');
+      const dots = document.querySelectorAll('.slider-dot');
+      const prevBtn = document.getElementById('prevSlide');
+      const nextBtn = document.getElementById('nextSlide');
+      let currentSlide = 0;
+      let slideInterval;
+      function startSlideShow() {
+        slideInterval = setInterval(() => {
+          nextSlide();
+        }, 5000);
+      }
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % 5;
+        updateSlider(currentSlide);
+      }
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + 5) % 5;
+        updateSlider(currentSlide);
+      }
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          clearInterval(slideInterval);
+          updateSlider(index);
+          startSlideShow();
+        });
+      });
+      prevBtn.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        prevSlide();
+        startSlideShow();
+      });
+      nextBtn.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        nextSlide();
+        startSlideShow();
+      });
+      function updateSlider(slideIndex) {
+        slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === slideIndex);
+        });
+        currentSlide = slideIndex;
+      }
+      startSlideShow();
+      const slider = document.querySelector('.slideshow-container');
+      slider.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+      });
+      slider.addEventListener('mouseleave', () => {
+        startSlideShow();
+      });
+    }
+    function initWilayaSelect() {
+      const wilayaSelect = document.getElementById('wilaya');
+      Object.keys(deliveryPrices).forEach(wilaya => {
+        const option = document.createElement('option');
+        option.value = wilaya;
+        option.textContent = wilaya;
+        wilayaSelect.appendChild(option);
+      });
+    }
+    function initEvents() {
+      document.getElementById('wilaya').addEventListener('change', updatePrice);
+      document.getElementById('deliveryType').addEventListener('change', updatePrice);
+      document.getElementById('nextToStep2').addEventListener('click', goToStep2);
+      document.getElementById('backToStep1').addEventListener('click', goToStep1);
+      document.getElementById('nextToStep3').addEventListener('click', goToStep3);
+      document.getElementById('backToStep2').addEventListener('click', goToStep2);
+      document.getElementById('addPieceBtn').addEventListener('click', addPiece);
+      document.getElementById('orderForm').addEventListener('submit', submitOrder);
+      document.getElementById('clearSavedData').addEventListener('click', clearUserData);
+    }
+
+    let pieceCount = 0;
+    function addPiece() {
+      pieceCount++;
+      const pieceElement = document.createElement('div');
+      pieceElement.className = 'piece';
+      pieceElement.innerHTML = `
+        <div class="piece-header">
+          <div class="piece-number">${pieceCount}</div>
+          <button type="button" class="remove-piece" onclick="removePiece(this)"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="piece-grid">
+          <div class="form-group">
+            <label><i class="fas fa-tshirt"></i> اختر المودال</label>
+            <select name="modal${pieceCount}" onchange="updatePieceImage(this, ${pieceCount})" required>
+              <option value="">-- اختر --</option>
+              ${Object.keys(modalData).map(key => 
+                `<option value="${key}">${modalData[key].name}</option>`
+              ).join('')}
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-cubes"></i> الكمية</label>
+            <select name="quantity${pieceCount}" onchange="updatePrice()" required>
+              ${Array.from({length: 10}, (_, i) => 
+                `<option value="${i+1}">${i+1}</option>`
+              ).join('')}
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-palette"></i> اللون</label>
+            <select name="color${pieceCount}" required>
+              <option value="أبيض">أبيض</option>
+              <option value="أسود">أسود</option>
+              <option value="رمادي">رمادي</option>
+              <option value="أزرق">أزرق</option>
+              <option value="أحمر">أحمر</option>
+              <option value="أخضر">أخضر</option>
+              <option value="زهري">زهري</option>
+              <option value="بنفسجي">بنفسجي</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-child"></i> عمر الطفل</label>
+            <select name="age${pieceCount}" onchange="updatePieceSize(this, ${pieceCount})" required>
+              ${Array.from({length: 10}, (_, i) => 
+                `<option value="${5+i}">${5+i} سنوات</option>`
+              ).join('')}
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-ruler"></i> المقاس</label>
+            <input type="text" name="size${pieceCount}" id="size${pieceCount}" readonly>
+          </div>
+        </div>
+        <div class="piece-image" id="pieceImage${pieceCount}"></div>
+      `;
+      document.getElementById('piecesContainer').appendChild(pieceElement);
+      updatePrice();
+      const addButton = document.getElementById('addPieceBtn');
+      if (pieceCount === 1) {
+        addButton.innerHTML = '<i class="fas fa-plus"></i> أضف مودال آخر';
+      }
+      updateProgressBar();
+    }
+
+    function removePiece(button) {
+      const pieceElement = button.closest('.piece');
+      pieceElement.style.animation = 'fadeOut 0.3s ease';
+      setTimeout(() => {
+        pieceElement.remove();
+        pieceCount--;
+        const addButton = document.getElementById('addPieceBtn');
+        if (pieceCount === 0) {
+          addButton.innerHTML = '<i class="fas fa-plus"></i> أضف إلى السلة';
+        }
+        const pieces = document.querySelectorAll('.piece');
+        pieces.forEach((piece, index) => {
+          piece.querySelector('.piece-number').textContent = index + 1;
+        });
+        updatePrice();
+        updateProgressBar();
+      }, 300);
+    }
+
+    function updatePieceImage(select, pieceId) {
+      const modalId = select.value;
+      const imageContainer = document.getElementById(`pieceImage${pieceId}`);
+      if (modalId && modalData[modalId]) {
+        imageContainer.innerHTML = `
+          <img src="${modalData[modalId].image}" alt="${modalData[modalId].name}">
+          <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray);">${modalData[modalId].description}</p>
+        `;
+      } else {
+        imageContainer.innerHTML = '';
+      }
+      updatePrice();
+    }
+
+    function updatePieceSize(select, pieceId) {
+      const age = parseInt(select.value);
+      document.getElementById(`size${pieceId}`).value = getSize(age);
+    }
+
+    function updatePrice() {
+      let totalPieces = 0;
+      let subtotal = 0;
+      for (let i = 1; i <= pieceCount; i++) {
+        const quantitySelect = document.querySelector(`[name="quantity${i}"]`);
+        if (quantitySelect) {
+          const quantity = parseInt(quantitySelect.value) || 0;
+          totalPieces += quantity;
+        }
+      }
+      const unitPrice = totalPieces >= 2 ? 3000 : 3300;
+      const discount = totalPieces >= 2 ? 300 : 0;
+      subtotal = totalPieces * unitPrice;
+      const wilaya = document.getElementById('wilaya').value;
+      const deliveryType = document.getElementById('deliveryType').value;
+      const deliveryCost = deliveryPrices[wilaya] ? deliveryPrices[wilaya][deliveryType] : 0;
+      const total = subtotal + deliveryCost;
+      document.getElementById('unitPrice').textContent = `${unitPrice} دج`;
+      document.getElementById('piecesCount').textContent = totalPieces;
+      document.getElementById('subtotal').textContent = `${subtotal} دج`;
+      document.getElementById('deliveryCost').textContent = `${deliveryCost} دج`;
+      document.getElementById('totalPrice').textContent = `${total} دج`;
+      const discountInfo = document.getElementById('discountInfo');
+      if (totalPieces >= 2) {
+        discountInfo.style.display = 'flex';
+        document.getElementById('discountAmount').textContent = `-${discount * totalPieces} دج`;
+      } else {
+        discountInfo.style.display = 'none';
+      }
+      document.getElementById('cartItemsCount').textContent = `${totalPieces} عناصر`;
+      document.getElementById('cartTotalPrice').textContent = `${total} دج`;
+      document.getElementById('cartBadge').textContent = totalPieces;
+      return {
+        totalPieces,
+        unitPrice,
+        subtotal,
+        deliveryCost,
+        total,
+        discount: totalPieces >= 2 ? discount * totalPieces : 0
+      };
+    }
+
+    function updateProgressBar() {
+      const progressSteps = document.querySelectorAll('.progress-step');
+      const progressBar = document.querySelector('.progress-bar');
+      let activeStep = 1;
+      if (pieceCount > 0) activeStep = 2;
+      progressSteps.forEach(step => {
+        const stepNum = parseInt(step.getAttribute('data-step'));
+        if (stepNum < activeStep) {
+          step.classList.add('completed');
+          step.classList.remove('active');
+        } else if (stepNum === activeStep) {
+          step.classList.add('active');
+          step.classList.remove('completed');
+        } else {
+          step.classList.remove('active', 'completed');
+        }
+      });
+      const progressPercent = ((activeStep - 1) / 2) * 100;
+      progressBar.style.setProperty('--progress-width', `${progressPercent}%`);
+    }
+
+    function goToStep2() {
+      if (pieceCount === 0) {
+        alert('الرجاء إضافة قطعة واحدة على الأقل قبل المتابعة');
+        return;
+      }
+      document.getElementById('step1').style.display = 'none';
+      document.getElementById('step2').style.display = 'block';
+      document.getElementById('step3').style.display = 'none';
+      document.querySelectorAll('.progress-step').forEach(step => {
+        const stepNum = parseInt(step.getAttribute('data-step'));
+        if (stepNum < 2) {
+          step.classList.add('completed');
+          step.classList.remove('active');
+        } else if (stepNum === 2) {
+          step.classList.add('active');
+          step.classList.remove('completed');
+        } else {
+          step.classList.remove('active', 'completed');
+        }
+      });
+    }
+    function goToStep1() {
+      document.getElementById('step1').style.display = 'block';
+      document.getElementById('step2').style.display = 'none';
+      document.getElementById('step3').style.display = 'none';
+      document.querySelectorAll('.progress-step').forEach(step => {
+        const stepNum = parseInt(step.getAttribute('data-step'));
+        if (stepNum === 1) {
+          step.classList.add('active');
+          step.classList.remove('completed');
+        } else {
+          step.classList.remove('active', 'completed');
+        }
+      });
+    }
+    function goToStep3() {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const daire = document.getElementById('daire').value;
+      const address = document.getElementById('address').value;
+      if (!name || !phone || !daire || !address) {
+        alert('الرجاء ملء جميع الحقول المطلوبة');
+        return;
+      }
+      if (!/^[0-9]{10}$/.test(phone)) {
+        alert('الرجاء إدخال رقم هاتف صحيح مكون من 10 أرقام');
+        return;
+      }
+      document.getElementById('step1').style.display = 'none';
+      document.getElementById('step2').style.display = 'none';
+      document.getElementById('step3').style.display = 'block';
+      document.querySelectorAll('.progress-step').forEach(step => {
+        step.classList.add('completed');
+        if (step.getAttribute('data-step') === '3') {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
+      updateOrderSummary();
+    }
+    function updateOrderSummary() {
+      const orderSummary = document.getElementById('orderSummary');
+      const modalOrderSummary = document.getElementById('modalOrderSummary');
+      const priceDetails = updatePrice();
+      let summaryHTML = '';
+      summaryHTML += `
+        <div class="summary-item">
+          <span><i class="fas fa-user"></i> الاسم:</span>
+          <span>${document.getElementById('name').value}</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-phone"></i> الهاتف:</span>
+          <span>${document.getElementById('phone').value}</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-map"></i> الدائرة:</span>
+          <span>${document.getElementById('daire').value}</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-home"></i> العنوان:</span>
+          <span>${document.getElementById('address').value}</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-map-marker-alt"></i> الولاية:</span>
+          <span>${document.getElementById('wilaya').value}</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-truck"></i> نوع التوصيل:</span>
+          <span>${document.getElementById('deliveryType').value === 'home' ? 'إلى المنزل' : 'إلى المكتب'}</span>
+        </div>
+        <hr style="margin: 1rem 0; border: none; border-top: 1px solid #cbd5e1;">
+      `;
+      for (let i = 1; i <= pieceCount; i++) {
+        const modalSelect = document.querySelector(`[name="modal${i}"]`);
+        const quantitySelect = document.querySelector(`[name="quantity${i}"]`);
+        const colorSelect = document.querySelector(`[name="color${i}"]`);
+        const ageSelect = document.querySelector(`[name="age${i}"]`);
+        const sizeInput = document.getElementById(`size${i}`);
+        if (modalSelect && modalSelect.value) {
+          summaryHTML += `
+            <div class="summary-item">
+              <span><i class="fas fa-tshirt"></i> القطعة ${i}:</span>
+              <span>${modalData[modalSelect.value].name} (${quantitySelect.value} × ${modalData[modalSelect.value].price} دج)</span>
+            </div>
+            <div class="summary-item" style="font-size: 0.9rem; color: var(--gray);">
+              <span>اللون/المقاس:</span>
+              <span>${colorSelect.value} / ${sizeInput.value}</span>
+            </div>
+          `;
+        }
+      }
+      summaryHTML += `
+        <hr style="margin: 1rem 0; border: none; border-top: 1px solid #cbd5e1;">
+        <div class="summary-item">
+          <span>المجموع الجزئي:</span>
+          <span>${priceDetails.subtotal} دج</span>
+        </div>
+        <div class="summary-item">
+          <span><i class="fas fa-truck"></i> تكلفة التوصيل:</span>
+          <span>${priceDetails.deliveryCost} دج</span>
+        </div>
+      `;
+      if (priceDetails.discount > 0) {
+        summaryHTML += `
+          <div class="summary-item">
+            <span>خصم الكمية:</span>
+            <span style="color: var(--success);">-${priceDetails.discount} دج</span>
+          </div>
+        `;
+      }
+      summaryHTML += `
+        <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--primary);">
+        <div class="summary-item" style="font-weight: bold; font-size: 1.1rem;">
+          <span>المجموع الكلي:</span>
+          <span>${priceDetails.total} دج</span>
+        </div>
+      `;
+      orderSummary.innerHTML = summaryHTML;
+      modalOrderSummary.innerHTML = summaryHTML;
+    }
+
+    function submitOrder(e) {
+      e.preventDefault();
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyOC11bwKjkHbKrpKED72ZuEO8-PZKByO2AwRL8xgnvohxGA-GKaLQh610wyA4au-YQ/exec";
+      const loadingEl = document.getElementById('loading');
+      loadingEl.style.display = 'block';
+      loadingEl.classList.add('fixed-loading');
+      document.getElementById('submitOrder').disabled = true;
+      const formData = new FormData(document.getElementById('orderForm'));
+      const priceDetails = updatePrice();
+      formData.append('total', priceDetails.total);
+      formData.append('deliveryCost', priceDetails.deliveryCost);
+      formData.append('timestamp', new Date().toLocaleString('fr-FR'));
+      saveUserData();
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(data => {
+        loadingEl.style.display = 'none';
+        loadingEl.classList.remove('fixed-loading');
+        document.getElementById('submitOrder').disabled = false;
+        document.getElementById('successModal').classList.add('show');
+        setTimeout(() => {
+          resetForm();
+        }, 3000);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        loadingEl.style.display = 'none';
+        loadingEl.classList.remove('fixed-loading');
+        document.getElementById('submitOrder').disabled = false;
+        alert('حدث خطأ أثناء إرسال الطلب. الرجاء المحاولة مرة أخرى.');
+      });
+    }
+    function resetForm() {
+      document.getElementById('piecesContainer').innerHTML = '';
+      pieceCount = 0;
+      const addButton = document.getElementById('addPieceBtn');
+      addButton.innerHTML = '<i class="fas fa-plus"></i> أضف إلى السلة';
+      document.getElementById('wilaya').value = '';
+      document.getElementById('deliveryType').value = 'home';
+      goToStep1();
+      updatePrice();
+    }
+    function closeModal() {
+      document.getElementById('successModal').classList.remove('show');
+    }
+    window.removePiece = removePiece;
+    window.updatePieceImage = updatePieceImage;
+    window.updatePieceSize = updatePieceSize;
+    window.updatePrice = updatePrice;
+    window.goToStep2 = goToStep2;
+    window.goToStep1 = goToStep1;
+    window.goToStep3 = goToStep3;
+    window.closeModal = closeModal;
+    window.clearUserData = clearUserData;
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeOut {
+        from { opacity: 1; transform: translateY(0); }
+        to { opacity: 0; transform: translateY(20px); }
+      }
+    `;
+    document.head.appendChild(style);
+</script>
 <body>
   <!-- ... tout le HTML du site utilisateur comme dans ton fichier ... -->
   <!-- Pour la lisibilité, tu peux reprendre le HTML ci-dessus ou coller le tien, tout est compatible -->
