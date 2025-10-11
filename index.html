@@ -1218,6 +1218,25 @@
         padding: 1.5rem;
       }
     }
+
+    /* إضافة أنماط جديدة للصور المصغرة */
+    .modal-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-thumbnail {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .modal-name {
+      flex-grow: 1;
+    }
   </style>
 </head>
 <body>
@@ -1263,7 +1282,7 @@
           <div class="slide active">
             <img src="images/modal1.jpg" alt="مودال 1" class="slide-image">
             <div class="slide-content">
-              <h3 class="slide-title">مودال أنيق للفتيات</h3>
+              <h3 class="slide-title">مودال1</h3>
               <p class="slide-description">تصميم مريح وعصري مع تفاصيل راقية تناسب جميع المناسبات</p>
               <div class="modal-price"><i class="fas fa-tag"></i> السعر: 3300 دج</div>
             </div>
@@ -1271,7 +1290,7 @@
           <div class="slide">
             <img src="images/modal2.jpg" alt="مودال 2" class="slide-image">
             <div class="slide-content">
-              <h3 class="slide-title">مودال احتفالي فاخر</h3>
+              <h3 class="slide-title">مودال2</h3>
               <p class="slide-description">تصميم عملي وأنيق مع خامات عالية الجودة تدوم طويلا</p>
               <div class="modal-price"><i class="fas fa-tag"></i> السعر: 3300 دج</div>
             </div>
@@ -1279,7 +1298,7 @@
           <div class="slide">
             <img src="images/modal3.jpg" alt="مودال 3" class="slide-image">
             <div class="slide-content">
-              <h3 class="slide-title">مودال جميل و مريح</h3>
+              <h3 class="slide-title">مودال3</h3>
               <p class="slide-description">مثالي للأنشطة اليومية مع تصميم يسمح بحرية الحركة</p>
               <div class="modal-price"><i class="fas fa-tag"></i> السعر: 3300 دج</div>
             </div>
@@ -1287,7 +1306,7 @@
           <div class="slide">
             <img src="images/modal4.jpg" alt="مودال 4" class="slide-image">
             <div class="slide-content">
-              <h3 class="slide-title">مودال جميل و مريح</h3>
+              <h3 class="slide-title">مودال4</h3>
               <p class="slide-description">تصميم فاخر مع تفاصيل مميزة للمناسبات الخاصة</p>
               <div class="modal-price"><i class="fas fa-tag"></i> السعر: 3300 دج</div>
             </div>
@@ -1295,7 +1314,7 @@
           <div class="slide">
             <img src="images/modal5.jpg" alt="مودال 5" class="slide-image">
             <div class="slide-content">
-              <h3 class="slide-title">مودال يومي عملي</h3>
+              <h3 class="slide-title">مودال5</h3>
               <p class="slide-description">تصميم عملي مع خامات سهلة التنظيف والارتداء</p>
               <div class="modal-price"><i class="fas fa-tag"></i> السعر: 3300 دج</div>
             </div>
@@ -1303,7 +1322,7 @@
          <div class="slide">
             <img src="images/modal6.jpg" alt="مودال 6" class="slide-image">
             <div class="slide-content">
-              <h3 class="slide-title">مودال شتوي راق</h3>
+              <h3 class="slide-title">مودال6</h3>
               <p class="slide-description">تصميم راق مع خامات سهلة التنظيف والارتداء</p>
               <div class="modal-price"><i class="fas fa-tag"></i> السعر: 3300 دج</div>
             </div>
@@ -1311,7 +1330,7 @@
          <div class="slide">
             <img src="images/modal7.jpg" alt="مودال 7" class="slide-image">
             <div class="slide-content">
-              <h3 class="slide-title">مودال يومي شتوي جداب</h3>
+              <h3 class="slide-title">مودال7</h3>
               <p class="slide-description">تصميم جداب مع خامات سهلة التنظيف والارتداء</p>
               <div class="modal-price"><i class="fas fa-tag"></i> السعر: 3300 دج</div>
             </div>
@@ -1320,7 +1339,7 @@
           <div class="slide">
             <img src="images/modal8.jpg" alt="مودال 8" class="slide-image">
             <div class="slide-content">
-              <h3 class="slide-title">مودال شتوي فاخر</h3>
+              <h3 class="slide-title">مودال8</h3>
               <p class="slide-description">تصميم فاخر مع خامات سهلة التنظيف والارتداء</p>
               <div class="modal-price"><i class="fas fa-tag"></i> السعر: 3300 دج</div>
             </div>
@@ -1328,7 +1347,7 @@
             <div class="slide">
             <img src="images/modal9.jpg" alt="مودال 9" class="slide-image">
             <div class="slide-content">
-              <h3 class="slide-title">مودال شتوي ملكي</h3>
+              <h3 class="slide-title">مودال9</h3>
               <p class="slide-description">تصميم ملكي بامتياز</p>
               <div class="modal-price"><i class="fas fa-tag"></i> السعر: 3300 دج</div>
             </div>
@@ -1336,7 +1355,7 @@
           <div class="slide">
             <img src="images/modal10.jpg" alt="مودال 10" class="slide-image">
             <div class="slide-content">
-              <h3 class="slide-title">مودال شتوي تركي</h3>
+              <h3 class="slide-title">مودال10</h3>
               <p class="slide-description">تصميم تركي فاخر</p>
               <div class="modal-price"><i class="fas fa-tag"></i> السعر: 3300 دج</div>
             </div>
@@ -1345,7 +1364,7 @@
              <div class="slide">
             <img src="images/modal11.jpg" alt="مودال 11" class="slide-image">
             <div class="slide-content">
-              <h3 class="slide-title">مودال شتوي ملكي</h3>
+              <h3 class="slide-title">مودال11</h3>
               <p class="slide-description">تصميم ملكي بامتياز</p>
               <div class="modal-price"><i class="fas fa-tag"></i> السعر: 3300 دج</div>
             </div>
@@ -1589,139 +1608,132 @@
   </div>
 
   <script>
-   
-
-
-const deliveryPrices = {
-  "00 - إختر الولاية": { code: 0, home: 0, desk: 0 },
-  "01 - أدرار": { code: 1, home: 1100, desk: 600 },
-  "02 - الشلف": { code: 2, home: 700, desk: 400 },
-  "03 - الأغواط": { code: 3, home: 900, desk: 500 },
-  "04 - أم البواقي": { code: 4, home: 650, desk: 400 },
-  "05 - باتنة": { code: 5, home: 700, desk: 400 },
-  "06 - بجاية": { code: 6, home: 700, desk: 400 },
-  "07 - بسكرة": { code: 7, home: 900, desk: 500 },
-  "08 - بشار": { code: 8, home: 1100, desk: 600 },
-  "09 - البليدة": { code: 9, home: 500, desk: 250 },
-  "10 - البويرة": { code: 10, home: 700, desk: 400 },
-  "11 - تمنراست": { code: 11, home: 1300, desk: 800 },
-  "12 - تبسة": { code: 12, home: 700, desk: 400 },
-  "13 - تلمسان": { code: 13, home: 800, desk: 400 },
-  "14 - تيارت": { code: 14, home: 800, desk: 400 },
-  "15 - تيزي وزو": { code: 15, home: 700, desk: 400 },
-  "16 - الجزائر": { code: 16, home: 500, desk: 250 },
-  "17 - الجلفة": { code: 17, home: 900, desk: 500 },
-  "18 - جيجل": { code: 18, home: 700, desk: 400 },
-  "19 - سطيف": { code: 19, home: 700, desk: 400 },
-  "20 - سعيدة": { code: 20, home: 800, desk: 400 },
-  "21 - سكيكدة": { code: 21, home: 600, desk: 400 },
-  "22 - سيدي بلعباس": { code: 22, home: 700, desk: 400 },
-  "23 - عنابة": { code: 23, home: 700, desk: 400 },
-  "24 - قالمة": { code: 24, home: 600, desk: 400 },
-  "25 - قسنطينة": { code: 25, home: 600, desk: 400 },
-  "26 - المدية": { code: 26, home: 700, desk: 400 },
-  "27 - مستغانم": { code: 27, home: 700, desk: 400 },
-  "28 - المسيلة": { code: 28, home: 800, desk: 400 },
-  "29 - معسكر": { code: 29, home: 700, desk: 400 },
-  "30 - ورقلة": { code: 30, home: 900, desk: 500 },
-  "31 - وهران": { code: 31, home: 800, desk: 400 },
-  "32 - البيض": { code: 32, home: 800, desk: 500 },
-  "33 - إليزي": { code: 33, home: 1300, desk: 600 },
-  "34 - برج بوعريريج": { code: 34, home: 700, desk: 400 },
-  "35 - بومرداس": { code: 35, home: 700, desk: 400 },
-  "36 - الطارف": { code: 36, home: 700, desk: 400 },
-  "37 - تندوف": { code: 37, home: 1300, desk: 600 },
-  "38 - تيسمسيلت": { code: 38, home: 800, desk: 400 },
-  "39 - الوادي": { code: 39, home: 900, desk: 500 },
-  "40 - خنشلة": { code: 40, home: 700, desk: 500 },
-  "41 - سوق أهراس": { code: 41, home: 700, desk: 400 },
-  "42 - تيبازة": { code: 42, home: 700, desk: 400 },
-  "43 - ميلة": { code: 43, home: 500, desk: 350 },
-  "44 - عين الدفلى": { code: 44, home: 700, desk: 400 },
-  "45 - النعامة": { code: 45, home: 800, desk: 500 },
-  "46 - عين تموشنت": { code: 46, home: 800, desk: 400 },
-  "47 - غرداية": { code: 47, home: 900, desk: 500 },
-  "48 - غليزان": { code: 48, home: 700, desk: 400 },
-  "49 - تيميمون": { code: 49, home: 1100, desk: 600 },
-  "50 - برج باجي مختار": { code: 50, home: 1200, desk: 650 },
-  "51 - أولاد جلال": { code: 51, home: 900, desk: 500 },
-  "52 - بني عباس": { code: 52, home: 1100, desk: 600 },
-  "53 - عين صالح": { code: 53, home: 1300, desk: 700 },
-  "54 - عين قزام": { code: 54, home: 1300, desk: 700 },
-  "55 - توقرت": { code: 55, home: 950, desk: 550 },
-  "56 - جانت": { code: 56, home: 1100, desk: 500 },
-  "57 - المغير": { code: 57, home: 950, desk: 550 },
-  "58 - المنيعة": { code: 58, home: 1000, desk: 600 }
-};
-
-
-
-    
+    const deliveryPrices = {
+      "00 - إختر الولاية": { code: 0, home: 0, desk: 0 },
+      "01 - أدرار": { code: 1, home: 1100, desk: 600 },
+      "02 - الشلف": { code: 2, home: 700, desk: 400 },
+      "03 - الأغواط": { code: 3, home: 900, desk: 500 },
+      "04 - أم البواقي": { code: 4, home: 650, desk: 400 },
+      "05 - باتنة": { code: 5, home: 700, desk: 400 },
+      "06 - بجاية": { code: 6, home: 700, desk: 400 },
+      "07 - بسكرة": { code: 7, home: 900, desk: 500 },
+      "08 - بشار": { code: 8, home: 1100, desk: 600 },
+      "09 - البليدة": { code: 9, home: 500, desk: 250 },
+      "10 - البويرة": { code: 10, home: 700, desk: 400 },
+      "11 - تمنراست": { code: 11, home: 1300, desk: 800 },
+      "12 - تبسة": { code: 12, home: 700, desk: 400 },
+      "13 - تلمسان": { code: 13, home: 800, desk: 400 },
+      "14 - تيارت": { code: 14, home: 800, desk: 400 },
+      "15 - تيزي وزو": { code: 15, home: 700, desk: 400 },
+      "16 - الجزائر": { code: 16, home: 500, desk: 250 },
+      "17 - الجلفة": { code: 17, home: 900, desk: 500 },
+      "18 - جيجل": { code: 18, home: 700, desk: 400 },
+      "19 - سطيف": { code: 19, home: 700, desk: 400 },
+      "20 - سعيدة": { code: 20, home: 800, desk: 400 },
+      "21 - سكيكدة": { code: 21, home: 600, desk: 400 },
+      "22 - سيدي بلعباس": { code: 22, home: 700, desk: 400 },
+      "23 - عنابة": { code: 23, home: 700, desk: 400 },
+      "24 - قالمة": { code: 24, home: 600, desk: 400 },
+      "25 - قسنطينة": { code: 25, home: 600, desk: 400 },
+      "26 - المدية": { code: 26, home: 700, desk: 400 },
+      "27 - مستغانم": { code: 27, home: 700, desk: 400 },
+      "28 - المسيلة": { code: 28, home: 800, desk: 400 },
+      "29 - معسكر": { code: 29, home: 700, desk: 400 },
+      "30 - ورقلة": { code: 30, home: 900, desk: 500 },
+      "31 - وهران": { code: 31, home: 800, desk: 400 },
+      "32 - البيض": { code: 32, home: 800, desk: 500 },
+      "33 - إليزي": { code: 33, home: 1300, desk: 600 },
+      "34 - برج بوعريريج": { code: 34, home: 700, desk: 400 },
+      "35 - بومرداس": { code: 35, home: 700, desk: 400 },
+      "36 - الطارف": { code: 36, home: 700, desk: 400 },
+      "37 - تندوف": { code: 37, home: 1300, desk: 600 },
+      "38 - تيسمسيلت": { code: 38, home: 800, desk: 400 },
+      "39 - الوادي": { code: 39, home: 900, desk: 500 },
+      "40 - خنشلة": { code: 40, home: 700, desk: 500 },
+      "41 - سوق أهراس": { code: 41, home: 700, desk: 400 },
+      "42 - تيبازة": { code: 42, home: 700, desk: 400 },
+      "43 - ميلة": { code: 43, home: 500, desk: 350 },
+      "44 - عين الدفلى": { code: 44, home: 700, desk: 400 },
+      "45 - النعامة": { code: 45, home: 800, desk: 500 },
+      "46 - عين تموشنت": { code: 46, home: 800, desk: 400 },
+      "47 - غرداية": { code: 47, home: 900, desk: 500 },
+      "48 - غليزان": { code: 48, home: 700, desk: 400 },
+      "49 - تيميمون": { code: 49, home: 1100, desk: 600 },
+      "50 - برج باجي مختار": { code: 50, home: 1200, desk: 650 },
+      "51 - أولاد جلال": { code: 51, home: 900, desk: 500 },
+      "52 - بني عباس": { code: 52, home: 1100, desk: 600 },
+      "53 - عين صالح": { code: 53, home: 1300, desk: 700 },
+      "54 - عين قزام": { code: 54, home: 1300, desk: 700 },
+      "55 - توقرت": { code: 55, home: 950, desk: 550 },
+      "56 - جانت": { code: 56, home: 1100, desk: 500 },
+      "57 - المغير": { code: 57, home: 950, desk: 550 },
+      "58 - المنيعة": { code: 58, home: 1000, desk: 600 }
+    };
 
     // بيانات الموديلات المحسنة
     const modalData = {
       1: { 
-        name: "مودال أنيق للفتيات", 
+        name: "مودال1", 
         image: "images/modal1.jpg", 
         price: 3300,
         description: "تصميم مريح وعصري مع تفاصيل راقية تناسب جميع المناسبات"
       },
       2: { 
-        name: "مودال احتفالي فاخر", 
+        name: "مودال2", 
         image: "images/modal2.jpg", 
         price: 3300,
         description: "تصميم عملي وأنيق مع خامات عالية الجودة تدوم طويلا"
       },
       3: { 
-        name: "مودال الاحلام بلون احمر", 
+        name: "مودال3", 
         image: "images/modal3.jpg", 
         price: 3300,
         description: "مثالي للأنشطة اليومية مع تصميم يسمح بحرية الحركة"
       },
       4: { 
-        name: "مودال الاحلام بلون ازرق", 
+        name: "مودال4", 
         image: "images/modal4.jpg", 
         price: 3300,
         description: "تصميم فاخر مع تفاصيل مميزة للمناسبات الخاصة"
       },
       5: { 
-        name: "مودال يومي عملي", 
+        name: "مودال5", 
         image: "images/modal5.jpg", 
         price: 3300,
         description: "تصميم عملي مع خامات سهلة التنظيف والارتداء"
       },
       6: { 
-        name: "معطف أنيق للفتيات", 
+        name: "مودال6", 
         image: "images/modal6.jpg", 
         price: 3300,
         description: "تصميم مريح وعصري مع تفاصيل راقية تناسب جميع المناسبات"
       },
       7: { 
-        name: "معطف فاخر", 
+        name: "مودال7", 
         image: "images/modal7.jpg", 
         price: 3300,
         description: "تصميم عملي وأنيق مع خامات عالية الجودة تدوم طويلا"
       },
       8: { 
-        name: "معطف الاحلام", 
+        name: "مودال8", 
         image: "images/modal8.jpg", 
         price: 3300,
         description: "مثالي للأنشطة اليومية مع تصميم يسمح بحرية الحركة"
       },
       9: { 
-        name: "معطف تركي", 
+        name: "مودال9", 
         image: "images/modal9.jpg", 
         price: 3300,
         description: "تصميم فاخر مع تفاصيل مميزة للمناسبات الخاصة"
       },
       10: { 
-        name: "معطف ملكي", 
+        name: "مودال10", 
         image: "images/modal10.jpg", 
         price: 3300,
         description: "تصميم جميل مع خامات سهلة التنظيف والارتداء"
       },
       11: { 
-        name: "معطف ملكي", 
+        name: "مودال11", 
         image: "images/modal11.jpg", 
         price: 3300,
         description: "تصميم ملكي مع خامات سهلة التنظيف والارتداء"
@@ -1989,7 +2001,12 @@ const deliveryPrices = {
             <select name="modal${pieceCount}" onchange="updatePieceImage(this, ${pieceCount})" required>
               <option value="">-- اختر --</option>
               ${Object.keys(modalData).map(key => 
-                `<option value="${key}">${modalData[key].name}</option>`
+                `<option value="${key}">
+                  <div class="modal-option">
+                    <img src="${modalData[key].image}" alt="${modalData[key].name}" class="modal-thumbnail">
+                    <span class="modal-name">${modalData[key].name}</span>
+                  </div>
+                </option>`
               ).join('')}
             </select>
           </div>
