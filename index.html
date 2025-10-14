@@ -1327,11 +1327,6 @@
         grid-column: span 1;
       }
     }*/
-
-
-    /* إعادة ترتيب الحقول حسب التسلسل المطلوب */
-
-
 /* إعادة ترتيب الحقول حسب التسلسل المطلوب */
 .piece-grid {
   display: flex;
@@ -1339,40 +1334,32 @@
   gap: 1.5rem;
 }
 
-.piece-grid .form-group:nth-child(1) { /* المودال */
+/* إزالة جميع قواعد order لأنها تسبب المشكلة */
+/*
+.piece-grid .form-group:nth-child(1) { 
   order: 1;
 }
 
-.piece-image-container { /* الصورة */
+.piece-image-container { 
   order: 2;
-  text-align: center;
-  margin: 0.5rem 0;
 }
 
-.piece-grid .form-group:nth-child(2) { /* الكمية */
+.piece-grid .form-group:nth-child(2) { 
   order: 3;
 }
 
-.piece-grid .form-group:nth-child(3) { /* اللون */
+.piece-grid .form-group:nth-child(3) { 
   order: 4;
 }
 
-.piece-grid .form-group:nth-child(4) { /* العمر */
+.piece-grid .form-group:nth-child(4) { 
   order: 5;
 }
 
-.piece-grid .form-group:nth-child(5) { /* المقاس */
+.piece-grid .form-group:nth-child(5) { 
   order: 6;
 }
-
-
-
-/* تخطيط القطعة بالترتيب الطبيعي */
-.piece-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
+*/
 
 .piece-image-container {
   text-align: center;
@@ -1401,7 +1388,6 @@
   padding: 0 1rem;
 }
 
-
 /* تنسيق حقل المقاس */
 .piece-grid .form-group:last-child input[readonly] {
   background-color: #f8f9fa;
@@ -1417,7 +1403,6 @@
   box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
   outline: none;
 }
-    
     
     
     /* تصغير حجم السعر وتعريف المودال */
