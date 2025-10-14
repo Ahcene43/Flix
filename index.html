@@ -1338,25 +1338,26 @@
       font-size: 1.2rem !important;
     }
     
-    /* السعر يلمس بلون أخضر قاسح */
-    .modal-price {
-      animation: pulse-green 1.5s infinite;
-      background: rgba(0, 255, 0, 0.2) !important;
-      color: #00ff00 !important;
-      text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-    }
-    
-    @keyframes pulse-green {
-      0% {
-        box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-      }
-      50% {
-        box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
-      }
-      100% {
-        box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-      }
-    }
+    /* السعر بخلفية خضراء ناعمة وأرقام سوداء واضحة */
+.modal-price {
+  animation: pulse-green 1.5s infinite;
+  background: rgba(0, 255, 0, 0.2) !important;
+  color: #000000 !important; /* اللون الأسود للأرقام */
+  font-weight: bold; /* لتكون الأرقام أكثر وضوحاً */
+  text-shadow: none; /* إزالة الظل الأخضر السابق */
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  }
+}
     
     /* تصغير حجم تفاصيل الطلب */
     .price-box {
