@@ -210,7 +210,39 @@
    
 
     
+/* زر Call To Action - صغير، في الوسط، مع تأثير نبض */
+.cta-button {
+  display: block;
+  margin: 0 auto;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ff6b8b, #ff4757);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  animation: pulse-cta 0.8s infinite;
+  box-shadow: 0 4px 15px rgba(255, 107, 139, 0.4);
+  width: auto;
+}
 
+/* تأثير hover */
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 139, 0.6);
+  animation: none;
+  background: linear-gradient(135deg, #ff4757, #ff3838);
+}
+
+/* أنيميشن النبض */
+@keyframes pulse-cta {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
 
 
 
