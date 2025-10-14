@@ -204,7 +204,7 @@
       margin-right: auto;
     }
 
-    .cta-button {
+    /*.cta-button {
       display: inline-flex;
       align-items: center;
       gap: 0.8rem;
@@ -223,8 +223,56 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(255,107,139,0.4);
       background: var(--primary-dark);
-    }
+    }*/
 
+
+/* زر ابدأ التسوق الآن */
+.cta-shop{
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 18px;
+  font-size: 14px;
+  line-height: 1;
+  color: #fff;
+  background: rgba(17,17,17,0.8);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 999px;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  text-decoration: none;
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+.cta-shop:hover{
+  background: rgba(17,17,17,0.92);
+  transform: translate(-50%, -50%) scale(1.04);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.32);
+}
+
+.cta-shop:active{
+  transform: translate(-50%, -50%) scale(0.98);
+}
+
+@media (max-width: 768px){
+  .cta-shop{ top: 16%; font-size: 13px; padding: 9px 16px; }
+}
+
+@media (max-width: 420px){
+  .cta-shop{ top: 18%; font-size: 12px; padding: 8px 14px; }
+}
+
+
+
+
+
+
+
+
+
+    
     /* ---------- قسم المميزات ---------- */
     .features-section {
       margin: 4rem 0;
@@ -1280,58 +1328,7 @@
         box-shadow: 0 4px 15px rgba(255, 56, 56, 0.4);
       }
 
-
-
-
-
-      
-
-/* زر ابدأ التسوق الآن */
-.cta-shop{
-  position: absolute;
-  top: 12%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 10px 18px;
-  font-size: 14px;
-  line-height: 1;
-  color: #fff;
-  background: rgba(17,17,17,0.8);
-  border: 1px solid rgba(255,255,255,0.35);
-  border-radius: 999px;
-  z-index: 10;
-  backdrop-filter: blur(4px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  text-decoration: none;
-  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
-}
-
-.cta-shop:hover{
-  background: rgba(17,17,17,0.92);
-  transform: translate(-50%, -50%) scale(1.04);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.32);
-}
-
-.cta-shop:active{
-  transform: translate(-50%, -50%) scale(0.98);
-}
-
-@media (max-width: 768px){
-  .cta-shop{ top: 16%; font-size: 13px; padding: 9px 16px; }
-}
-
-@media (max-width: 420px){
-  .cta-shop{ top: 18%; font-size: 12px; padding: 8px 14px; }
-}
-
-
-
-
-
-
-
-
-      
+   
 
       
     }
