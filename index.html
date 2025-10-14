@@ -2278,7 +2278,7 @@
       }, 300);
     }
 
-    // تحديث صورة القطعة
+   /* // تحديث صورة القطعة
     function updatePieceImage(select, pieceId) {
       const modalId = select.value;
       const imageContainer = document.getElementById(`pieceImage${pieceId}`);
@@ -2293,7 +2293,30 @@
       }
       
       updatePrice();
-    }
+    }*/
+
+
+    // تحديث صورة القطعة
+function updatePieceImage(select, pieceId) {
+  const modalId = select.value;
+  const imageContainer = document.getElementById(`pieceImage${pieceId}`);
+  
+  if (modalId && modalData[modalId]) {
+    imageContainer.innerHTML = `
+      <img src="${modalData[modalId].image}" alt="${modalData[modalId].name}">
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray);">${modalData[modalId].description}</p>
+    `;
+    
+    // إظهار الصورة مباشرة بعد التحديث
+    imageContainer.style.display = 'block';
+    imageContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } else {
+    imageContainer.innerHTML = '';
+    imageContainer.style.display = 'none';
+  }
+  
+  updatePrice();
+}
 
     // تحديث مقاس القطعة
     function updatePieceSize(select, pieceId) {
