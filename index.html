@@ -121,6 +121,51 @@
       font-weight: 300;
     }
 
+
+
+
+
+    <style>
+.moving-text {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #4ECDC4 0%, #3BB4AC 100%);
+    color: white;
+    padding: 10px 0;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    white-space: nowrap;
+    animation: moveText 20s linear infinite;
+}
+
+@keyframes moveText {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* تعديل الهيدر ليتناسب مع الشريط المتحرك */
+header {
+    margin-top: 40px; /* تعديل حسب ارتفاع الشريط المتحرك */
+}
+</style>
+
+<div class="moving-text">
+    للاستفسار يرجى الاتصال على الرقم 0551102155 / 0671466489
+</div>
+
+
+
+    
+
     /* شريط السلة المصغر والأنيق */
     .cart-summary {
       background: rgba(255,255,255,0.25);
